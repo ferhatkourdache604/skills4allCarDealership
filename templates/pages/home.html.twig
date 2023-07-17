@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title 'Skill4All Car Dealership' %}
+
+
+{% block body %}    
+    <div class="jumbotron text-center">
+        <h1>Skills4All Car Dealership</h1>
+        <p>This is a description dor Skills4All Car Dealership</p>
+    </div>
+
+    <div class="container">
+        <h2>Latest published cars </h2>
+        <div class="row flex">
+            {% for car in cars %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('car', {id: car.id, slug: car.slug}) }}">{{ car.name }} </a>
+                            </h5>
+                            <div class = "text-primary"> 
+                                {{ car.formattedCost }} €
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Weather</h2>
+        <h3>Current temperature: {{ temperature }} °C </h3>
+
+    </div>
+{% endblock %}

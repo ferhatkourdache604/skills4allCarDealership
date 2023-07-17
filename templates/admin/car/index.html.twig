@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title 'Skill4All Car DealershipAdmin Dashboard' %}
+
+
+{% block body %}    
+
+    <div class="container mt-4">
+
+        <h1>Admin Dashboard</h1>
+            <div class="row flex">
+                <a class="btn btn-primary mr-4" href="{{ path('admin_create')}} ">Add new car</a>
+                <a class="btn btn-secondary ml-4" href="{{ path('app_category_index') }}">Category management</a>
+            </div>
+
+        <div class="paginator">
+            {{ knp_pagination_render(cars) }}
+        </div>
+
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            
+                {% for car in cars %}
+                    <tr>
+                        <td>{{car.name}}</td>
+                        <td>
+                            <a href="{{ path('admin_edit',{id: car.id}) }}" class="btn btn-secondary">Manage</a> 
+                            <form method="post" action="{{ path('admin_delete', {id: car.id}) }}" style="display: inline-block" >
+                                <input type = "hidden" name="_token" value="{{ csrf_token('delete' ~ car.id ) }}">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+{% endblock %}

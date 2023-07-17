@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Check our cars catalogue' %}
+
+{% block body %} 
+
+    <div class="jumbotron">
+        <div class="container">
+
+
+            {{form_start(form)}}
+        <button class="btn btn-primary">Search</button>
+            {{form_end(form)}}
+        </div>
+    </div>  
+
+    <div class="container mt-4">
+        <h1>Check our cars catalogue</h1>
+    </div>
+    <div class="container">
+        <div class="row flex">
+        <!-- Affichier les détails de chaque voiture en utilisant la boucle for -->
+         <!--   { for car in availableCars }  => Pour chaque voiture dans la liste des voitures disponible, fais le code HTML ci-dessous -->
+            {% for car in availableCars %}
+            <div class="col-3" >
+                <div class="card" >
+                        <div class="card-body" >
+                            <h5 class="card-title" >
+                                <a href="{{ path('car', {id: car.id, slug: car.slug}) }}">{{ car.name }} - {{ car.color }} </a>
+                            </h5>
+                            <div class = "text-primary" > 
+                                {{ car.formattedCost }} €
+                            </div>
+                            <div class="row flex" >
+                                <div class="col-6">Doors: {{ car.nbDoors }}</div>
+                                <div class="col-6">Seats: {{ car.nbSeats }}</div>
+                            </div>
+                        </div>      
+                    </div>
+            </div>
+            {% endfor %}
+        
+        </div>
+        <div class="paginator">
+            {{ knp_pagination_render(availableCars)}}
+        </div>
+    </div>
+{% endblock %} 

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title car.name %}
+
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>{{ car.name }} - {{ car.color }}</h1>
+                <h2>{{ car.nbSeats }} seats - {{ car.nbDoors }} doors</h2>
+                <div class="text-primary" style="font-size: 4rem;font-weight:bold;">
+                    {{ car.formattedCost }} €
+                </div>
+            </div>
+        </div>
+
+        <p>{{ car.description | nl2br }} </p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Color</td>
+                        <td>{{car.color}}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of doors</td>
+                        <td>{{ car.nbDoors }}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of seats</td>
+                        <td>{{ car.nbSeats }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

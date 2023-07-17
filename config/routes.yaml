@@ -1,0 +1,43 @@
+home:
+    path: /
+    controller: Controller\HomeController::index
+    
+cars:
+    path: cars
+    controller: Controller\CarController::index
+car:
+    path: cars/{slug}-{id}
+    controller: Controller\CarController::show
+    requirements:
+        slug: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+
+admin:
+    path: admin
+    controller: Controller\AdminCarController::index
+
+admin_edit:
+    path: admin/{id}
+    controller: Controller\AdminCarController::edit
+    requirements:
+        id: '\d+'
+
+admin_create:
+    path: admin/create
+    controller: Controller\AdminCarController::create
+
+admin_delete:
+    path: admin/delete{id}
+    controller: Controller\AdminCarController::delete
+    methods: POST
+
+
+
+
+
+
+
+
+
+controllers:
+    resource: ../src/Controller/
+    type: attribute
